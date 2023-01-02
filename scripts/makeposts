@@ -1,0 +1,36 @@
+<?php
+
+require_once 'vendor/autoload.php';
+
+$faker = Faker\Factory::create();
+$db = new Framework\Database(['DB_DSN' => 'sqlite:db/phpmvc.sqlite']);
+
+$table = $db->pdo->prepare('CREATE TABLE IF NOT EXISTS blogposts (
+    id INTEGER PRIMARY KEY, 
+    title TEXT, 
+    body TEXT, 
+    published TEXT,
+    image_url TEXT
+)');
+
+$table->execute();
+
+$sql = $db->pdo->prepare('INSERT INTO blogposts (title, body, published, image_url) VALUES (:title, :body, :published, :image_url)');
+$sql->bindParam(':title', $title);
+$sql->bindParam(':body', $body);
+$sql->bindParam(':published', $published);
+$sql->bindParam(':image_url', $image_url);
+
+for($x = 0; $x < 10; $x++)
+{
+    $title = $faker->realText(100);
+    $body = $faker->realText(3000);
+
+    $date = $faker->dateTimeThisYear('now', 'localtime');
+    $published = $date->format('Y-m-d H:i:s');
+
+    $id = rand(1, 1084);
+    $image_url = "https://picsum.photos/id/$id/640/480";
+
+    $sql->execute();
+}

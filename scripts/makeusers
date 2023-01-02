@@ -1,0 +1,30 @@
+<?php
+
+require_once 'vendor/autoload.php';
+
+$faker = Faker\Factory::create();
+$db = new Framework\Database(['DB_DSN' => 'sqlite:storage/phpmvc.db']);
+
+$table = $db->pdo->prepare('CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY, 
+    fname TEXT, 
+    lname TEXT, 
+    email TEXT,
+    password TEXT
+)');
+
+$sql = $db->pdo->prepare('INSERT INTO users (fname, lname, email, password) VALUES (:fname, :lname, :email, :password)');
+$sql->bindParam(':fname', $fname);
+$sql->bindParam(':lname', $lname);
+$sql->bindParam(':email', $email);
+$sql->bindParam(':password', $password);
+
+for($x = 0; $x < 10; $x++)
+{
+    $fname = $faker->firstName;
+    $lname = $faker->lastName;
+    $email = $faker->email;
+    $password = hash("md5", $faker->password(6, 50));
+
+    $sql->execute();
+}
