@@ -1,56 +1,48 @@
-<?php namespace Framework;
+<?php
 
+namespace Framework;
+
+use Framework\Config;
 use Framework\Database;
 use PDOException;
 
 abstract class Model
 {
-    protected Database $db;
-    public array $values = [];
+	public array $values = [];
+	private $db;
 
-    public function __construct()
-    {
-        $this->db = new Database(App::load()->config());
-        
-    }
+	public function __construct()
+	{
+		$this->db = Database::load()->init();
+	}
 
-    public function get(int $id = null)
-    {
-        $table = $this->table;
+	public function get(int $id = null)
+	{
+		$table = $this->table;
 
-        $sql = "SELECT * FROM $table";
-        
-        if(!is_null($id))
-        {
-            $sql .= " WHERE id = $id";
-        }
+		$sql = "SELECT * FROM $table";
 
-        $query = $this->db->pdo->query($sql);
+		if (!is_null($id)) {
+			$sql .= " WHERE id = $id";
+		}
 
-        return $query->fetchAll();
-    }
+		$query = $this->db->query($sql);
 
-    /*
-    public static function get(int $id): self
-    {
+		return $query->fetchAll();
+	}
 
-    }
-    */
-    
-    public function create(): void
-    {
-        $table = $this->table;
-        $fields = $this->fields;
-        $params = array_map(fn($val) => ":$val", $fields);
+	public function create(): void
+	{
+		$table = $this->table;
+		$fields = $this->fields;
+		$params = array_map(fn ($val) => ":$val", $fields);
 
-        $sql = $this->db->pdo->prepare("INSERT INTO $table (".implode(',', $fields).") VALUES (".implode(',', $params).")");
-        
-        foreach ($fields as $key => $field)
-        {
-            $sql->bindValue(":$field", $this->values[$key]);
-        }
+		$sql = $this->db->prepare("INSERT INTO $table (" . implode(',', $fields) . ") VALUES (" . implode(',', $params) . ")");
 
-        $sql->execute();
-        
-    }
+		foreach ($fields as $key => $field) {
+			$sql->bindValue(":$field", $this->values[$key]);
+		}
+
+		$sql->execute();
+	}
 }

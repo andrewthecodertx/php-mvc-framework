@@ -1,32 +1,34 @@
-<?php namespace Framework;
+<?php
 
+namespace Framework;
+
+use Framework\Config;
 use Throwable;
 
 class App
 {
-    private static App $instace;
-    private static array $config;
+    private static App $instance;
+    private static Config $config;
     private Request $request;
     private Response $response;
     private Router $router;
 
     public function __construct()
     {
-        self::$instace = $this;
-        self::$config = include(ROOT.'config.php');
+        self::$instance = $this;
         $this->request = new Request;
         $this->response = new Response;
         $this->router = new Router($this->request, $this->response);
     }
 
-    public static function config(): array
+    public static function config(): Config
     {
         return self::$config;
     }
 
     public static function load(): self
     {
-        return self::$instace;
+        return self::$instance;
     }
 
     public function request(): Request
@@ -51,16 +53,11 @@ class App
 
     public function run()
     {
-        try 
-        {
+        try {
             echo $this->router->dispatch();
-        }
-        catch(Throwable $e)
-        {
+        } catch (Throwable $e) {
             App::load()->response()->setStatus((int)$e->getCode());
             echo new View('_error', ['error' => $e]);
-
         }
-        
     }
 }

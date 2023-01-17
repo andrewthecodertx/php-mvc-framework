@@ -1,25 +1,43 @@
-<?php namespace Framework;
+<?php
 
+namespace Framework;
+
+use Framework\Config;
 use PDO;
 use PDOException;
 
-class Database extends PDO
+final class Database
 {
-    public ?PDO $pdo = null;
+	private function __clone()
+	{
+	}
+	private function __wakeup()
+	{
+	}
 
-    public function __construct(array $conf)
-    {
-        try
-        {
-            $this->pdo = new PDO($conf['DB_DSN'], 
-                                 $conf['DB_USER'] ?? null, 
-                                 $conf['DB_PASSWORD'] ?? null);
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        }
-        catch(PDOException $e)
-        {
-            throw new Exception\DatabaseException($e->getMessage(), (int)$e->getCode());
-        }
-    }
+	private static $instance = null;
+	private $connection; 
+
+	public static function load()
+	{
+		if (is_null(self::$instance)) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	private function __construct()
+	{
+		$this->connection = new PDO(
+			Config::get('DB_DSN'),
+			Config::get('DB_USER') ?? null,
+			Config::get('DB_PASSOWORD') ?? null
+		);
+		
+	}
+	public function init()
+	{
+		return $this->connection;
+	}
 }

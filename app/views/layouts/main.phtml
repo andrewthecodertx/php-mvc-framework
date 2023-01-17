@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
-        <title>Andrew S Erwin | <?= $this->title ?? 'welcome' ?></title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="bg-slate-300">
-        <header>
-            <nav>
-                <a href="/" class="">home</a>
-                <a href="/about" class="">about</a>
-                <a href="/contact" class="">contact</a>
-                <a href="/blog" class="">blog</a>
-            </nav>
-        </header>
-        <main>
-        {{ content }}
-        </main>
-        <footer>
-            &copy; 2022 | Andrew S Erwin
-        </footer>
-    </body>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<title>Andrew S Erwin | <?= $this->title ?? 'welcome' ?></title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+	<header>
+		<nav>
+			<a href="/" class="">home</a>
+			<a href="/about" class="">about</a>
+			<a href="/contact" class="">contact</a>
+			<a href="/blog" class="">blog</a>
+		</nav>
+	</header>
+	<main>
+		{{ content }}
+	</main>
+	<footer>
+		&copy; 2022 | Andrew S Erwin
+	</footer>
+</body>
+
 </html>
