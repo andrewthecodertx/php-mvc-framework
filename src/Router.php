@@ -7,14 +7,11 @@ namespace Framework;
 class Router
 {
 	private array $routes = [];
-	private Request $request;
-	private Response $response;
 
-	public function __construct(Request $request, Response $response)
-	{
-		$this->request = $request;
-		$this->response = $response;
-	}
+	public function __construct(
+		private Request $request, 
+		private Response $response
+	){}
 
 	public function get(string $path, string|callable|array $callback): void
 	{

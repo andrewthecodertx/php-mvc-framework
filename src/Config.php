@@ -6,13 +6,6 @@ namespace Framework;
 
 final class Config
 {
-  private function __clone()
-  {
-  }
-  private function __wakeup()
-  {
-  }
-
   private static $instance = null;
   private static $values = null;
 

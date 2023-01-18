@@ -10,13 +10,6 @@ use PDOException;
 
 final class Database
 {
-	private function __clone()
-	{
-	}
-	private function __wakeup()
-	{
-	}
-
 	private static ?Database $instance = null;
 	private PDO $connection; 
 
