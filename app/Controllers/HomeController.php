@@ -18,7 +18,7 @@ class HomeController extends Controller
 
 	public function about(): View
 	{
-		return $this->view('about');
+		return $this->view('about', ['about' => 'about text']);
 	}
 
 	public function contact(): View

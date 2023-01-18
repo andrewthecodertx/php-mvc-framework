@@ -4,13 +4,11 @@ declare(strict_types = 1);
 
 namespace Framework;
 
-use Framework\Config;
 use Throwable;
 
 class App
 {
 	private static App $instance;
-	private static Config $config;
 	private Request $request;
 	private Response $response;
 	private Router $router;
@@ -23,12 +21,7 @@ class App
 		$this->router = new Router($this->request, $this->response);
 	}
 
-	public static function config(): Config
-	{
-		return self::$config;
-	}
-
-	public static function load(): self
+	public static function load(): App
 	{
 		return self::$instance;
 	}

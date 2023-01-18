@@ -19,7 +19,7 @@ final class Config
     self::$values = $param;
   }
 
-  private static function load(): mixed
+  private static function load(): Config
   {
     if (is_null(self::$instance)) {
       self::$instance = new self();
