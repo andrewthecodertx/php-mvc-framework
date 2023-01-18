@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework;
 
 final class Config
@@ -24,7 +26,7 @@ final class Config
     self::$values = $param;
   }
 
-  private static function load()
+  private static function load(): mixed
   {
     if (is_null(self::$instance)) {
       self::$instance = new self();
@@ -33,7 +35,7 @@ final class Config
     return self::$instance;
   }
 
-  public static function get($key)
+  public static function get($key): string|null
   {
     self::load();
 

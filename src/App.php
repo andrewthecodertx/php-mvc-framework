@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework;
 
 use Framework\Config;
@@ -51,7 +53,7 @@ class App
 		$this->router->post($path, $callback);
 	}
 
-	public function run()
+	public function run(): void
 	{
 		try {
 			echo $this->router->dispatch();
