@@ -43,6 +43,6 @@ abstract class Model
 			$sql->bindValue(":$field", $this->values[$key]);
 		}
 
-		$sql->execute();
+		return $sql->execute();
 	}
 }
