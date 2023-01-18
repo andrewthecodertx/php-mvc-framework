@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework;
 
 use Framework\Config;
@@ -15,17 +17,8 @@ final class Database
 	{
 	}
 
-	private static $instance = null;
-	private $connection; 
-
-	public static function load()
-	{
-		if (is_null(self::$instance)) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
+	private static ?Database $instance = null;
+	private PDO $connection; 
 
 	private function __construct()
 	{
@@ -34,9 +27,18 @@ final class Database
 			Config::get('DB_USER') ?? null,
 			Config::get('DB_PASSOWORD') ?? null
 		);
-		
 	}
-	public function init()
+
+	public static function connect(): PDO
+	{
+		if (is_null(self::$instance)) {
+			self::$instance = new self();
+		}
+
+		return self::$instance->init();
+	}
+
+	private function init(): PDO
 	{
 		return $this->connection;
 	}

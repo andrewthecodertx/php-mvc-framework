@@ -2,7 +2,6 @@
 
 namespace Framework;
 
-use Framework\Config;
 use Framework\Database;
 use PDOException;
 
@@ -13,13 +12,12 @@ abstract class Model
 
 	public function __construct()
 	{
-		$this->db = Database::load()->init();
+		$this->db = Database::connect();
 	}
 
 	public function get(int $id = null)
 	{
 		$table = $this->table;
-
 		$sql = "SELECT * FROM $table";
 
 		if (!is_null($id)) {

@@ -3,9 +3,9 @@
 require_once 'vendor/autoload.php';
 
 $faker = Faker\Factory::create();
-$db = new Framework\Database(['DB_DSN' => 'sqlite:db/phpmvc.sqlite']);
+$db = Framework\Database::connect();
 
-$table = $db->pdo->prepare('CREATE TABLE IF NOT EXISTS blogposts (
+$table = $db->prepare('CREATE TABLE IF NOT EXISTS blogposts (
     id INTEGER PRIMARY KEY, 
     title TEXT, 
     body TEXT, 
@@ -15,7 +15,7 @@ $table = $db->pdo->prepare('CREATE TABLE IF NOT EXISTS blogposts (
 
 $table->execute();
 
-$sql = $db->pdo->prepare('INSERT INTO blogposts (title, body, published, image_url) VALUES (:title, :body, :published, :image_url)');
+$sql = $db->prepare('INSERT INTO blogposts (title, body, published, image_url) VALUES (:title, :body, :published, :image_url)');
 $sql->bindParam(':title', $title);
 $sql->bindParam(':body', $body);
 $sql->bindParam(':published', $published);
