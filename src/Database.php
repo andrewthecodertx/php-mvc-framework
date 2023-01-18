@@ -35,11 +35,6 @@ final class Database
 			self::$instance = new self();
 		}
 
-		return self::$instance->init();
-	}
-
-	private function init(): PDO
-	{
-		return $this->connection;
+		return self::$instance->connection;
 	}
 }

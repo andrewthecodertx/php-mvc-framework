@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Framework;
 
 use Framework\Database;
@@ -15,7 +17,7 @@ abstract class Model
 		$this->db = Database::connect();
 	}
 
-	public function get(int $id = null)
+	public function get(int $id = null): array|false
 	{
 		$table = $this->table;
 		$sql = "SELECT * FROM $table";
@@ -29,7 +31,7 @@ abstract class Model
 		return $query->fetchAll();
 	}
 
-	public function create(): void
+	public function create(): bool
 	{
 		$table = $this->table;
 		$fields = $this->fields;

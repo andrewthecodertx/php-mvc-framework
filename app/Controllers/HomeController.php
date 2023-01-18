@@ -1,23 +1,28 @@
-<?php namespace App\Controllers;
+<?php
+
+declare(strict_types = 1);
+
+namespace App\Controllers;
 
 use Framework\Controller;
+use Framework\View;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        $data = ['test' => "some text"];
+	public function index(): View
+	{
+		$data = ['test' => "some text"];
 
-        return $this->view('index', $data);
-    }
+		return $this->view('index', $data);
+	}
 
-    public function about()
-    {
-        return $this->view('about');
-    }
+	public function about(): View
+	{
+		return $this->view('about');
+	}
 
-    public function contact()
-    {
-        return $this->view('contact');
-    }
+	public function contact(): View
+	{
+		return $this->view('contact');
+	}
 }
