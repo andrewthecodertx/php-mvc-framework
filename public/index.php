@@ -1,11 +1,13 @@
 <?php
 
+session_start();
+
 use Framework\App;
 use Framework\Request;
 
 require_once(__DIR__.'/../bootstrap/init.php');
 
-session_start();
+
 if(!isset($_SESSION['USERNAME'])) {
   $_SESSION['USERNAME'] = \Faker\Factory::create()->firstName;
 }

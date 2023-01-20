@@ -12,7 +12,8 @@ class HomeController extends Controller
 	public function index(): View
 	{
     $data = [
-      'test' => "some text"
+      'test' => "some text",
+      'cookie' => \Framework\App::init()->request()->cookie()
     ];
 
 		return $this->view('index', $data);

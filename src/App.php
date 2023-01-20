@@ -10,12 +10,10 @@ class App
 {
   private static App $instance;
   private Request $request;
-  private $name = null;
 
   public function __construct()
 	{
     self::$instance = $this;
-    $this->name = \Faker\Factory::create()->firstName;
 	}
 
   public static function init(): App
@@ -26,11 +24,6 @@ class App
   public function request(): Request
   {
     return $this->request;
-  }
-
-  public function name()
-  {
-    return $this->name;
   }
 
   public static function get()

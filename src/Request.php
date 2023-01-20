@@ -23,6 +23,11 @@ class Request
 		return $_SERVER['REQUEST_METHOD'];
 	}
 
+  public function cookie(): string
+  {
+    return $_SERVER['HTTP_COOKIE'];
+  }
+
 	public function body(): array
 	{
 		$body = [];
