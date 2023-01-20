@@ -18,7 +18,7 @@ class App
 		self::$instance = $this;
 		$this->request = new Request;
 		$this->response = new Response;
-		$this->router = new Router($this->request, $this->response);
+		$this->router = new Router;
 	}
 
 	public static function load(): App
@@ -49,7 +49,7 @@ class App
 	public function run(): void
 	{
 		try {
-			echo $this->router->dispatch();
+			echo $this->router->dispatch(self::$request, self::$response);
 		} catch (Throwable $e) {
 			App::load()->response()->setStatus((int)$e->getCode());
 			echo new View('_error', ['error' => $e]);

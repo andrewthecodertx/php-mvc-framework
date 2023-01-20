@@ -6,27 +6,22 @@ namespace Framework;
 
 class Router
 {
-	private array $routes = [];
+	private static array $routes = [];
 
-	public function __construct(
-		private Request $request, 
-		private Response $response
-	){}
-
-	public function get(string $path, string|callable|array $callback): void
+	public static function get(string $path, string|callable|array $callback): void
 	{
-		$this->routes['GET'][$path] = $callback;
+		self::$routes['GET'][$path] = $callback;
 	}
 
-	public function post(string $path, string|callable|array $callback): void
+	public static function post(string $path, string|callable|array $callback): void
 	{
-		$this->routes['POST'][$path] = $callback;
+		self::$routes['POST'][$path] = $callback;
 	}
 
-	public function dispatch(): mixed
+	public function dispatch(Request $request, Response $response): mixed
 	{
-		$method = $this->request->method();
-		$path = $this->request->path();
+		$method = $request->method();
+		$path = $request->path();
 		$callback = $this->routes[$method][$path];
 
 		if (is_null($callback)) {

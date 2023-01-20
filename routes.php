@@ -2,20 +2,19 @@
 
 use Framework\App;
 use App\Controllers;
+use Framework\Router;
 
-return function (App $app) {
-	$app->get('/', [Controllers\HomeController::class, 'index']);
-	$app->get('/about', [Controllers\HomeController::class, 'about']);
-	$app->get('/contact', [Controllers\HomeController::class, 'contact']);
+Router::get('/', [Controllers\HomeController::class, 'index']);
+Router::get('/about', [Controllers\HomeController::class, 'about']);
+Router::get('/contact', [Controllers\HomeController::class, 'contact']);
 
-	$app->get('/testlink', function () {
-		var_dump(App::load()->request()->body());
-	});
+Router::get('/testlink', function () {
+	var_dump(App::load()->request()->body());
+});
 
-	$app->get('/infolink', function () {
-		phpinfo();
-	});
+Router::get('/infolink', function () {
+	phpinfo();
+});
 
-	$app->get('/blog', [Controllers\BlogController::class, 'index']);
-	$app->get('/blog/{id}', [Controllers\BlogController::class, 'index']);
-};
+Router::get('/blog', [Controllers\BlogController::class, 'index']);
+Router::get('/blog/{id}', [Controllers\BlogController::class, 'index']);
