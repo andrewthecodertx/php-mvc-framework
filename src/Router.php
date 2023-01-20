@@ -18,11 +18,11 @@ class Router
 		self::$routes['POST'][$path] = $callback;
 	}
 
-	public function dispatch(Request $request, Response $response): mixed
+	public static function dispatch(Request $request): mixed
 	{
 		$method = $request->method();
 		$path = $request->path();
-		$callback = $this->routes[$method][$path];
+		$callback = self::$routes[$method][$path];
 
 		if (is_null($callback)) {
 			throw new Exception\NotFoundException;

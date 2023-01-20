@@ -6,17 +6,12 @@ namespace Framework;
 
 class View
 {
-	private Request $request;
-	private Response $response;
 
 	private string $view;
 	private array $data;
 
 	public function __construct(string $view, array $data = [])
 	{
-		$this->request = App::load()->request();
-		$this->response = App::load()->response();
-
 		$this->view = $view;
 		$this->data = $data;
 	}
