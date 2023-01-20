@@ -11,7 +11,9 @@ class HomeController extends Controller
 {
 	public function index(): View
 	{
-		$data = ['test' => "some text"];
+    $data = [
+      'test' => "some text"
+    ];
 
 		return $this->view('index', $data);
 	}
