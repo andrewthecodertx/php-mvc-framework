@@ -25,7 +25,7 @@ class Request
 
   public function cookie(): string
   {
-    return $_SERVER['HTTP_COOKIE'];
+    return session_id();
   }
 
 	public function body(): array

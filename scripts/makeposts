@@ -1,13 +1,18 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once('vendor/autoload.php');
+require('bootstrap/init.php');
 
 $faker = Faker\Factory::create();
 $db = Framework\Database::connect();
 
+$drop = $db->prepare('DROP TABLE blogposts');
+$drop->execute();
+
 $table = $db->prepare('CREATE TABLE IF NOT EXISTS blogposts (
     id INTEGER PRIMARY KEY, 
-    title TEXT, 
+    title TEXT,
+    slug TEXT,
     body TEXT, 
     published TEXT,
     image_url TEXT
@@ -15,16 +20,20 @@ $table = $db->prepare('CREATE TABLE IF NOT EXISTS blogposts (
 
 $table->execute();
 
-$sql = $db->prepare('INSERT INTO blogposts (title, body, published, image_url) VALUES (:title, :body, :published, :image_url)');
+$sql = $db->prepare('INSERT INTO blogposts (title, slug, body, published, image_url) VALUES (:title, :slug, :body, :published, :image_url)');
 $sql->bindParam(':title', $title);
+$sql->bindParam(':slug', $slug);
 $sql->bindParam(':body', $body);
 $sql->bindParam(':published', $published);
 $sql->bindParam(':image_url', $image_url);
 
 for($x = 0; $x < 10; $x++)
 {
-    $title = $faker->realText(100);
-    $body = $faker->realText(3000);
+    $title = $faker->sentences(1, true);
+    $slug = str_replace(' ', '-', $title);
+    $slug = str_replace('.','', $slug);
+    $slug = strtolower($slug);
+    $body = $faker->paragraphs(4, true);
 
     $date = $faker->dateTimeThisYear('now', 'localtime');
     $published = $date->format('Y-m-d H:i:s');

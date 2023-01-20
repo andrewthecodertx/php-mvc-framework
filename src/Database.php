@@ -18,7 +18,7 @@ final class Database
 		$this->connection = new PDO(
 			Config::get('DB_DSN'),
 			Config::get('DB_USER') ?? null,
-			Config::get('DB_PASSOWORD') ?? null
+			Config::get('DB_PASSWORD') ?? null
 		);
 	}
 

@@ -1,9 +1,13 @@
 <?php
 
-require_once 'vendor/autoload.php';
+require_once('vendor/autoload.php');
+require('bootstrap/init.php');
 
 $faker = Faker\Factory::create();
 $db = Framework\Database::connect();
+
+$drop = $db->prepare('DROP TABLE users');
+$drop->execute();
 
 $table = $db->prepare('CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY, 
@@ -12,6 +16,8 @@ $table = $db->prepare('CREATE TABLE IF NOT EXISTS users (
     email TEXT,
     password TEXT
 )');
+
+$table->execute();
 
 $sql = $db->prepare('INSERT INTO users (fname, lname, email, password) VALUES (:fname, :lname, :email, :password)');
 $sql->bindParam(':fname', $fname);
