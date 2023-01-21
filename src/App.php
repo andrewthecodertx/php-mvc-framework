@@ -26,7 +26,7 @@ class App
     return $this->request;
   }
 
-  public static function get()
+  public static function get(): App
   {
     return self::$instance;
   }
