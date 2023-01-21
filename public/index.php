@@ -14,11 +14,10 @@ if(!isset($_SESSION['USERNAME'])) {
 
 $app = new App;
 
-var_dump($_SERVER);
-
 /* LOAD ALL THE ROUTES */
 $routes = require(ROOT.'routes.php');
 
+/* CREATE THE REQUEST OBJECT */
 $request = new Request;
 
 $app->run($request);
