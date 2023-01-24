@@ -3,7 +3,8 @@
         "psr-4": {
             "App\\": "app/",
             "Framework\\": "src/",
-            "Faker\\": "Faker/"
+            "Faker\\": "Faker/",
+            "Test\\": "tests/"
         },
         "files": ["scripts/helpers.php"]
     },

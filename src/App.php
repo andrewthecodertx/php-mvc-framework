@@ -8,32 +8,32 @@ use Throwable;
 
 class App
 {
-  private static App $instance;
-  private Request $request;
+    private static App $instance;
+    private Request $request;
 
-  public function __construct()
+    public function __construct()
 	{
-    self::$instance = $this;
+        self::$instance = $this;
 	}
 
-  public static function init(): App
-  {
-    return self::$instance;  
-  }
+    public static function init(): App
+    {
+        return self::$instance;  
+    }
 
-  public function request(): Request
-  {
-    return $this->request;
-  }
+    public function request(): Request
+    {
+        return $this->request;
+    }
 
-  public static function get(): App
-  {
-    return self::$instance;
-  }
+    public static function get(): App
+    {
+        return self::$instance;
+    }
 
 	public function run(Request $request): void
 	{
-    $this->request = $request;
+        $this->request = $request;
 
 		try {
 			echo Router::dispatch($request);

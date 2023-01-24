@@ -8,15 +8,16 @@ class Router
 {
 	private static array $routes = [];
 
-	public static function get(string $path, string|callable|array $callback): void
+	public static function get(string $path, callable|array $callback): void
 	{
 		self::$routes['GET'][$path] = $callback;
 	}
 
-	public static function post(string $path, string|callable|array $callback): void
+	public static function post(string $path, callable|array $callback): void
 	{
 		self::$routes['POST'][$path] = $callback;
 	}
+
 
 	public static function dispatch(Request $request): mixed
 	{
@@ -26,10 +27,6 @@ class Router
 
 		if (is_null($callback)) {
 			throw new Exception\NotFoundException;
-		}
-
-		if (is_string($callback)) {
-			return new View($callback);
 		}
 
 		if (is_array($callback)) {
