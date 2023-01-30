@@ -4,14 +4,14 @@ declare(strict_types = 1);
 
 namespace App\Controllers;
 
-use App\Models\BlogPost;
 use Framework\Controller;
-use Framework\View;
 use Framework\Request;
+use Framework\View;
+use App\Models\BlogPost;
 
 class BlogController extends Controller
 {
-	public function index(Request $request): View
+	public function index(): View
 	{
 		$posts = new BlogPost;
 
@@ -19,10 +19,8 @@ class BlogController extends Controller
 		return $this->view('blog/index', ['posts' => $posts->get()]);
 	}
     
-    public function getblog(Request $request): View
+    public function getblog(): View
     {
         return $this->view('blog/article');
-        
     }
-
 }

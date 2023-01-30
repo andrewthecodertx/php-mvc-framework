@@ -26,6 +26,9 @@ class Router
 		$callback = self::$routes[$method][$path];
 
 		if (is_null($callback)) {
+            /* check to see if route is using a wildcard */
+            
+            
 			throw new Exception\NotFoundException;
 		}
 

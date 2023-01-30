@@ -16,7 +16,7 @@ Router::get('/infolink', function () {
 	phpinfo();
 });
 
-Router::get('/blog', [Controllers\BlogController::class, 'getblog']);
+Router::get('/blog', [Controllers\BlogController::class, 'index']);
 Router::get('/blog/{slug}', function() {
 	
 });
