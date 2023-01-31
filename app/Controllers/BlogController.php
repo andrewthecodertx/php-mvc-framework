@@ -11,16 +11,14 @@ use App\Models\BlogPost;
 
 class BlogController extends Controller
 {
-	public function index(): View
-	{
+	public function index(): View {
 		$posts = new BlogPost;
 
         // return json_encode($posts->get());
 		return $this->view('blog/index', ['posts' => $posts->get()]);
 	}
     
-    public function getblog(): View
-    {
+    public function getblog(): View {
         return $this->view('blog/article');
     }
 }

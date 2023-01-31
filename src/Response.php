@@ -6,13 +6,11 @@ namespace Framework;
 
 class Response
 {
-	public function setStatus(int $code): void
-	{
-    http_response_code($code);
+	public function setStatus(int $code): void {
+        http_response_code($code);
 	}
 
-  public function status()
-  {
-    return http_response_code();
-  }
+    public function status() {
+        return http_response_code();
+    }
 }

@@ -9,23 +9,20 @@ use Framework\View;
 
 class HomeController extends Controller
 {
-	public function index(): View
-	{
-    $data = [
-      'test' => "some text",
-      'cookie' => \Framework\App::init()->request()->cookie()
-    ];
+	public function index(): View {
+        $data = [
+            'test' => "some text",
+            'cookie' => \Framework\App::init()->request()->cookie()
+        ];
 
 		return $this->view('index', $data);
 	}
 
-	public function about(): View
-	{
+	public function about(): View {
 		return $this->view('about', ['about' => 'about text']);
 	}
 
-	public function contact(): View
-	{
+	public function contact(): View	{
 		return $this->view('contact');
 	}
 }

@@ -13,8 +13,7 @@ final class Database
 	private static ?Database $instance = null;
 	private PDO $connection; 
 
-	private function __construct()
-	{
+	private function __construct() {
 		$this->connection = new PDO(
 			Config::get('DB_DSN'),
 			Config::get('DB_USER') ?? null,
@@ -22,8 +21,7 @@ final class Database
 		);
 	}
 
-	public static function connect(): PDO
-	{
+	public static function connect(): PDO {
 		if (is_null(self::$instance)) {
 			self::$instance = new self();
 		}

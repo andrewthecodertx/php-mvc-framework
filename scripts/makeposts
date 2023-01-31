@@ -27,8 +27,7 @@ $sql->bindParam(':body', $body);
 $sql->bindParam(':published', $published);
 $sql->bindParam(':image_url', $image_url);
 
-for($x = 0; $x < 10; $x++)
-{
+for($x = 0; $x < 10; $x++) {
     $title = $faker->sentences(1, true);
     $slug = str_replace(' ', '-', $title);
     $slug = str_replace('.','', $slug);

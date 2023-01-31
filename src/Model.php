@@ -12,13 +12,11 @@ abstract class Model
 	public array $values = [];
 	private $db;
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->db = Database::connect();
 	}
 
-	public function get(int $id = null): array|false
-	{
+	public function get(int $id = null): array|false {
 		$table = $this->table;
 		$sql = "SELECT * FROM $table";
 
@@ -31,8 +29,7 @@ abstract class Model
 		return $query->fetchAll();
 	}
 
-	public function create(): bool
-	{
+	public function create(): bool {
 		$table = $this->table;
 		$fields = $this->fields;
 		$params = array_map(fn ($val) => ":$val", $fields);

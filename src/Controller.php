@@ -10,8 +10,7 @@ use Framework\Request;
 
 abstract class Controller
 {
-	public function view(string $view, array $data = []): View
-	{
+	public function view(string $view, array $data = []): View {
 		return new View($view, $data);
 	}
 }

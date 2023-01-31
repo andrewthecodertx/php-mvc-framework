@@ -6,8 +6,7 @@ namespace Framework;
 
 class Request
 {
-	public function path(): string
-	{
+	public function path(): string {
 		$path = $_SERVER['REQUEST_URI'] ?? '/';
 		$pos = strpos($path, '?');
 
@@ -18,18 +17,15 @@ class Request
 		return substr($path, 0, $pos);
 	}
 
-	public function method(): mixed
-	{
+	public function method(): mixed	{
 		return $_SERVER['REQUEST_METHOD'];
 	}
 
-  public function cookie(): string
-  {
+  public function cookie(): string {
     return session_id();
   }
 
-	public function body(): array
-	{
+	public function body(): array {
 		$body = [];
 
 		if ($this->method() === 'GET') {

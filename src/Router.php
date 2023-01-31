@@ -27,7 +27,7 @@ class Router
 
 		if (is_null($callback)) {
             /* check to see if route is using a wildcard */
-            
+                        
             
 			throw new Exception\NotFoundException;
 		}
