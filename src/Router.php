@@ -8,19 +8,16 @@ class Router
 {
 	private static array $routes = [];
 
-	public static function get(string $path, callable|array $callback): void
-	{
+	public static function get(string $path, callable|array $callback): void {
 		self::$routes['GET'][$path] = $callback;
 	}
 
-	public static function post(string $path, callable|array $callback): void
-	{
+	public static function post(string $path, callable|array $callback): void {
 		self::$routes['POST'][$path] = $callback;
 	}
 
 
-	public static function dispatch(Request $request): mixed
-	{
+	public static function dispatch(Request $request): mixed {
 		$method = $request->method();
 		$path = $request->path();
 		$callback = self::$routes[$method][$path];
