@@ -1,4 +1,3 @@
-.vscode
 vendor
 db/mysql
 src/Router.proto
