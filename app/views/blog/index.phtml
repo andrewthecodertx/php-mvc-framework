@@ -1,17 +1,17 @@
 <?php $this->layout = "main"; ?>
 <h1>BLOG</h1>
 <?php foreach ($posts as $post) : ?>
-	<article>
-    <header>
-      <a href="/blog/<?= $post['slug'] ?>">
-        <img height="175" width="350" src="<?= $post['image_url']; ?>" />
-      </a>
-      <a href="/blog/<?= $post['slug'] ?>">
-				<h2><?= $post['title']; ?></h2>
-			</a>
-		</header>
-		<div>
-			<?= $post['published']; ?>
-		</div>
-	</article>
+    <article>
+        <header>
+            <a href="/blog/<?= $post['slug'] ?>">
+                <img height="175" width="350" src="<?= $post['image_url']; ?>" />
+            </a>
+            <a href="/blog/<?= $post['slug'] ?>">
+                <h2><?= $post['title']; ?></h2>
+            </a>
+        </header>
+        <div>
+            <?= $post['published']; ?>
+        </div>
+    </article>
 <?php endforeach; ?>

@@ -20,12 +20,24 @@ class Router
 	public static function dispatch(Request $request): mixed {
 		$method = $request->method();
 		$path = $request->path();
+
+        /**
+         * 
+         * Check the routes array for the path being passed in
+         * If not, check for wildcards (/route/{id})
+         *
+         */ 
+
+        if (!in_array($path, self::$routes[$method])) {
+
+        }
+
 		$callback = self::$routes[$method][$path];
 
+        print_r($path);
+        var_dump(self::$routes);
+
 		if (is_null($callback)) {
-            /* check to see if route is using a wildcard */
-                        
-            
 			throw new Exception\NotFoundException;
 		}
 

@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace App\Controllers;
 
 use Framework\Controller;
-use Framework\Request;
 use Framework\View;
 use App\Models\BlogPost;
 
@@ -18,7 +17,7 @@ class BlogController extends Controller
 		return $this->view('blog/index', ['posts' => $posts->get()]);
 	}
     
-    public function getblog(): View {
+    public function show(): View {
         return $this->view('blog/article');
     }
 }

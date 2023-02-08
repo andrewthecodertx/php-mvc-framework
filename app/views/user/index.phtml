@@ -1,0 +1,11 @@
+<?php $this->layout = "main"; ?>
+<h1>USERS</h1>
+<?php foreach ($users as $user) : ?>
+    <article>
+        <header>
+           <a href="/user/<?= $user['id'] ?>">
+                <h2><?= $user['fname']; ?> <?= $user['lname']; ?></h2>
+            </a>
+        </header>
+   </article>
+<?php endforeach; ?>

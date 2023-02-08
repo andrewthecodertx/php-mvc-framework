@@ -17,6 +17,8 @@ Router::get('/infolink', function () {
 });
 
 Router::get('/blog', [Controllers\BlogController::class, 'index']);
-Router::get('/blog/{slug}', function() {
-	
-});
+Router::get('/blog/{slug}', [Controllers\BlogController::class, 'show']);
+
+Router::get('/user/{id}', [Controllers\UserController::class, 'show']);
+Router::get('/user', [Controllers\UserController::class, 'index']);
+
