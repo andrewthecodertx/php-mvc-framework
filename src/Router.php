@@ -24,7 +24,7 @@ class Router
         /**
          * 
          * Check the routes array for the path being passed in
-         * If not, check for wildcards (/route/{id})
+         * If not, check for wildcards (/path/{parameter})
          *
          */ 
 
