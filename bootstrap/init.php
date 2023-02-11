@@ -1,9 +1,9 @@
 <?php 
 
-define('ROOT', dirname(__DIR__).'/');
-define('SRC', ROOT.'src/');
-define('DB', ROOT.'db/');
-define('VIEWS', ROOT.'app/views/');
-define('LAYOUTS', VIEWS.'layouts/');
+define('ROOT', dirname(__DIR__).DIRECTORY_SEPARATOR);
+define('SRC', ROOT.'src'.DIRECTORY_SEPARATOR);
+define('DB', ROOT.'db'.DIRECTORY_SEPARATOR);
+define('VIEWS', ROOT.'app'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR);
+define('LAYOUTS', VIEWS.'layout'.DIRECTORY_SEPARATOR);
 
-require(ROOT.'vendor/autoload.php');
+require(ROOT.'vendor'.DIRECTORY_SEPARATOR.'autoload.php');

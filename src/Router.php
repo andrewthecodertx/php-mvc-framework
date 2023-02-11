@@ -16,7 +16,6 @@ class Router
 		self::$routes['POST'][$path] = $callback;
 	}
 
-
 	public static function dispatch(Request $request): mixed {
 		$method = $request->method();
 		$path = $request->path();
