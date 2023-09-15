@@ -1,9 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Framework;
 
+use Exception;
 use Framework\Database;
 use PDOException;
 
@@ -12,16 +13,26 @@ abstract class Model
 	public array $values = [];
 	private $db;
 
-	public function __construct() {
+	public function __construct()
+	{
 		$this->db = Database::connect();
 	}
 
-	public function get(int $id = null): array|false {
+	public function get(array $args = []): array|false
+	{
+		if ($args && count($args) !== 2) {
+			throw new Exception("MUST FORMAT ARRAY CORRECTLY");
+		}
+
 		$table = $this->table;
 		$sql = "SELECT * FROM $table";
 
-		if (!is_null($id)) {
-			$sql .= " WHERE id = $id";
+		if ($args) {
+			if (gettype($args[1]) === 'string') {
+				$sql .= " WHERE $args[0] = '$args[1]'";
+			} else {
+				$sql .= " WHERE $args[0] = $args[1]";
+			}
 		}
 
 		$query = $this->db->query($sql);
@@ -29,7 +40,8 @@ abstract class Model
 		return $query->fetchAll();
 	}
 
-	public function create(): bool {
+	public function create(): bool
+	{
 		$table = $this->table;
 		$fields = $this->fields;
 		$params = array_map(fn ($val) => ":$val", $fields);
