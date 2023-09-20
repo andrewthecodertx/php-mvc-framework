@@ -6,7 +6,6 @@ namespace Framework;
 
 use Exception;
 use Framework\Database;
-use PDOException;
 
 abstract class Model
 {

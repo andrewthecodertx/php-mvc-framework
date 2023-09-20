@@ -1,6 +1,5 @@
 <?php
 
-require_once('vendor/autoload.php');
 require('bootstrap/init.php');
 
 $faker = Faker\Factory::create();
