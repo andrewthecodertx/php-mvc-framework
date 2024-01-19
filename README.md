@@ -52,9 +52,9 @@ This is also where any future middleware would reside.
 - 'public/': entry point and static assets.
 - 'src/': this is the core framework!
 
-I also included Faker and some scripts to populate the database for testing purposes. Please note
-that the demo app is not styled in any way! And the content is very minimal. But it is a good
-starting point.
+I also included Faker and some scripts to populate the database for testing
+purposes. Please note that the demo app is not styled in any way! And the
+content is very minimal. But it is a good starting point.
 
 ## Limitations
 
