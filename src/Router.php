@@ -6,23 +6,19 @@ namespace Framework;
 
 use Exception;
 
-class Router
-{
+class Router {
 	private static array $routes = [];
 
-	public static function get(string $path, callable|array $callback): void
-	{
+	public static function get(string $path, callable|array $callback): void {
 		$path = preg_replace('/\{([A-Za-z_]+)\}/', '(?<$1>[^/]+)', $path);
 		self::$routes['GET'][$path] = $callback;
 	}
 
-	public static function post(string $path, callable|array $callback): void
-	{
+	public static function post(string $path, callable|array $callback): void {
 		self::$routes['POST'][$path] = $callback;
 	}
 
-	public static function dispatch(Request $request): mixed
-	{
+	public static function dispatch(Request $request): mixed {
 		$response = new Response;
 		$method = $request->method();
 		$path = $request->path();
