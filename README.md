@@ -35,9 +35,9 @@ To run the project, follow these steps:
 
 3. Start the project with docker compose:
 
-  ```bash
-  docker compose up
-  ```
+   ```bash
+   docker compose up
+   ```
 
 4. Browse to the application at http://localhost:8000
 
