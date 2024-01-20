@@ -68,7 +68,7 @@ generally guided further by client specs and requirements.
 
 I would love to have some folks come on board and help make this production ready!
 
-## License Information
+## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file
 for details.
