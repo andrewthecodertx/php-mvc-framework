@@ -7,3 +7,4 @@ define('VIEWS', ROOT . 'app' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARAT
 define('LAYOUTS', VIEWS . 'layouts' . DIRECTORY_SEPARATOR);
 
 require(ROOT . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
+$routes = require('routes.php');
