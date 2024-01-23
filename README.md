@@ -35,9 +35,9 @@ To run the project, follow these steps:
 
 3. Start the project with docker compose:
 
-  ```bash
-  docker compose up
-  ```
+   ```bash
+   docker compose up
+   ```
 
 4. Browse to the application at http://localhost:8000
 
@@ -68,7 +68,7 @@ generally guided further by client specs and requirements.
 
 I would love to have some folks come on board and help make this production ready!
 
-## License Information
+## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file
 for details.
