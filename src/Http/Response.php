@@ -2,38 +2,37 @@
 
 declare(strict_types=1);
 
-namespace Framework;
+namespace Framework\Http;
 
 class Response
 {
   public function __construct(
-    private int $status = 200,
     private array $headers = [],
-    private string $content = ''
+    private string $content = '',
+    private int $status = 200
   ) {
   }
 
   public function setStatus(int $code): Response
   {
-    http_response_code($code);
     $this->status = $code;
 
     return $this;
   }
 
-  public function status(): int
+  public function getStatus(): int
   {
     return $this->status;
   }
 
-  public function setContent($content): Response
+  public function setContent(string $content): Response
   {
     $this->content = $content;
 
     return $this;
   }
 
-  public function content(): string
+  public function getContent(): string
   {
     return $this->content;
   }
@@ -45,28 +44,37 @@ class Response
     return $this;
   }
 
-  public function headers(): array
+  public function getHeaders(): array
   {
     return $this->headers;
   }
 
   public function send(): void
   {
-    http_response_code($this->status);
-
     foreach ($this->headers as $name => $value) {
-      header("$name, $value");
+      header("$name: $value");
     }
 
     echo $this->content;
   }
 
-  public function redirect($url, $status = 302)
+  public function redirect($url, $status = 302): Response
   {
+    $response = clone $this;
     $this->setStatus($status);
     $this->addHeader('Location', $url);
     $this->send();
 
-    exit;
+    return $response;
+  }
+
+  /* these are for testing and debugging */
+  public function getOutput()
+  {
+    ob_start();
+    $this->send();
+    $output = ob_get_clean();
+
+    return $output;
   }
 }
