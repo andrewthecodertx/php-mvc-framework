@@ -1,3 +1,4 @@
 vendor
 db/mysql
 src/Router.proto
+.phpunit.*
