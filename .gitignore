@@ -1,4 +1,5 @@
 vendor
 database/data
 src/Router.proto
+.env
 .phpunit.*
