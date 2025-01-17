@@ -14,9 +14,10 @@ final class Config
     $param = [];
 
     // $param['DB']['DSN'] = "mysql:host=db;port=3306;dname=database";
-    $param['DB_DSN'] = "sqlite:" . DB . "phpmvc.sqlite";
+    // $param['DB_DSN'] = "sqlite:" . DB . "phpmvc.sqlite";
+    $param['DB_DSN'] = "pgsql:host=mvc_database;port=5432;dbname=mvcdb";
     $param['DB_USER'] = "dbuser";
-    $param['DB_PASSWORD'] = "password";
+    $param['DB_PASSWORD'] = "secret";
 
     self::$values = $param;
   }

@@ -5,11 +5,11 @@ require('bootstrap/init.php');
 $faker = Faker\Factory::create();
 $db = Framework\Database::connect();
 
-$drop = $db->prepare('DROP TABLE blogposts');
+$drop = $db->prepare('DROP TABLE IF EXISTS blogposts');
 $drop->execute();
 
 $table = $db->prepare('CREATE TABLE IF NOT EXISTS blogposts (
-    id INTEGER PRIMARY KEY, 
+    id SERIAL PRIMARY KEY, 
     title TEXT,
     slug TEXT,
     body TEXT, 
@@ -33,7 +33,7 @@ for($x = 0; $x < 10; $x++) {
     $slug = strtolower($slug);
     $body = $faker->paragraphs(4, true);
 
-    $date = $faker->dateTimeThisYear('now', 'localtime');
+    $date = $faker->dateTimeThisDecade();
     $published = $date->format('Y-m-d H:i:s');
 
     $id = rand(1, 1084);

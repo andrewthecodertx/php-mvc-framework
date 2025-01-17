@@ -1,18 +1,33 @@
-version: "3"
-
 services:
   app:
+    container_name: mvc_app
     build:
-      dockerfile: ./PHP/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - ./:/var/www/html
-
+      - .:/var/www/html
   web:
-    image: nginx:latest
-    ports:
-      - "8000:80"
+    container_name: mvc_web
+    image: nginx
     volumes:
-      - ./:/var/www/html
       - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - .:/var/www/html
+    ports:
+      - 8000:80
     links:
       - app
+  database:
+    container_name: mvc_database
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: mvcdb
+    volumes:
+      - ./database/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+networks:
+  app-network:
+    driver: bridge

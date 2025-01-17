@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if ! docker ps | grep -q mvc_app; then
+  echo "mvc_app container is not running"
+  exit 1
+
+fi
+
+docker exec -it mvc_app php scripts/makeusers "$@"
+docker exec -it mvc_app php scripts/makeposts "$@"

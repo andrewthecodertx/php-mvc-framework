@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Framework;
 
 use Exception;
+use Framework\Http\Request;
+use Framework\Http\Response;
 
 class Router
 {
@@ -27,6 +29,7 @@ class Router
     $method = $request->method();
     $path = $request->path();
 
+
     foreach (self::$routes[$method] as $route => $callback) {
       $pattern = '#^' . $route . '$#';
       $matches = [];
@@ -40,23 +43,17 @@ class Router
 
         if (is_array($callback) && method_exists($callback[0], $callback[1])) {
           return call_user_func_array([$callback[0], $callback[1]], [$request, $params]);
+        } elseif (is_callable($callback)) {
+          return call_user_func($callback, $request, $params);
         } else {
           throw new Exception("LOOKING FOR A METHOD THAT DOESN'T EXIST!");
         }
       }
     }
 
-    $callback = self::$routes[$method][$path];
+    $response->setStatus(404);
+    $response->setContent("RESOURCE: $path NOT FOUND!");
 
-    if (is_null($callback)) {
-      $response->setStatus(404);
-      throw new Exception("RESOURCE: $path NOT FOUND!", 404);
-    }
-
-    if (is_array($callback)) {
-      $callback[0] = new $callback[0];
-    }
-
-    return call_user_func($callback);
+    return $response;
   }
 }

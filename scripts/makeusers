@@ -5,11 +5,11 @@ require('bootstrap/init.php');
 $faker = Faker\Factory::create();
 $db = Framework\Database::connect();
 
-$drop = $db->prepare('DROP TABLE users');
+$drop = $db->prepare('DROP TABLE IF EXISTS users');
 $drop->execute();
 
 $table = $db->prepare('CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY, 
+    id SERIAL PRIMARY KEY, 
     fname TEXT, 
     lname TEXT, 
     email TEXT,
