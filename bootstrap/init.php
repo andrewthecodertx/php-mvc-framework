@@ -7,4 +7,8 @@ define('VIEWS', ROOT . 'app' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARAT
 define('LAYOUTS', VIEWS . 'layouts' . DIRECTORY_SEPARATOR);
 
 require(ROOT . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
+
+$dotenv = Dotenv\Dotenv::createImmutable(ROOT);
+$dotenv->load();
+
 $routes = require('routes.php');

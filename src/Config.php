@@ -13,11 +13,16 @@ final class Config
   {
     $param = [];
 
-    // $param['DB']['DSN'] = "mysql:host=db;port=3306;dname=database";
-    // $param['DB_DSN'] = "sqlite:" . DB . "phpmvc.sqlite";
-    $param['DB_DSN'] = "pgsql:host=mvc_database;port=5432;dbname=mvcdb";
-    $param['DB_USER'] = "dbuser";
-    $param['DB_PASSWORD'] = "secret";
+    $param['DB_DSN'] = sprintf(
+      '%s:host=%s;port=%s;dbname=%s',
+      $_ENV['DB_PROVIDER'],
+      $_ENV['DB_HOST'],
+      $_ENV['DB_PORT'],
+      $_ENV['DB_NAME']
+    );
+
+    $param['DB_USER'] = $_ENV['DB_USER'];
+    $param['DB_PASSWORD'] = $_ENV['DB_PASSWORD'];
 
     self::$values = $param;
   }
